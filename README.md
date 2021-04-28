@@ -79,6 +79,7 @@ As I decided to look at turbidity, I wanted to see the distribution of the turbi
 
 ## `anomalize` package
 [Back to top](#table-of-content)
+
 `anomalize` package fundamentally decompose a time series into seasonal, trend and remainder (residuals). The decomposition method it uses are: seasonal decomposition of time series by Loess (STL) and seasonal decomposition by piecewise medians (Twitter). Then, it detects the anomalies using either inter-quantile range (IQR) or eneralized extreme studentized deviation (GESD). 
 
 According to the author:
@@ -97,6 +98,7 @@ From the results above, it can be seen that STL + GESD gives the highest number 
 
 ## `tsoutliers` package
 [Back to top](#table-of-content)
+
 According to `tsoutliers`, the different types of outliers include:
 
 - Additive outliers: represents an isolated spike
@@ -129,6 +131,7 @@ Here, `tsoutliers` identified both additive outliers (AO) and innovation outlier
 
 ## What's next?
 [Back to top](#table-of-content)
+
 Deciding what to do with outliers has always been an issue in statistics. The difference here and matrix data is the temporal element. Outliers in matrices could be discarded (if that's the best option) while discarding an outlier in time series would create a temporal gap. Therefore, discretion should be used when it comes deciding what to do with it. The data was collected from different water distribution sites. According to [WHO](https://www.who.int/water_sanitation_health/publications/turbidity-information-200217.pdf), distribution comes after treatment and turbidity could indicate either of the following:
 
 - intrusion of soils and sewage through main breaks
@@ -146,10 +149,13 @@ Should one decide to use adjusted data for modelling, both `anomalize` and `tsou
 
 ## Conclusion
 [Back to top](#table-of-content)
+
 Fundamentally, `tsoutliers` works differently from `anomalize`. It applies model to the data, test for the different types of outliers and then refit and retest while the latter decompose and detect outliers. `tsoutliers` is useful in detecting the different types of outliers and visualising the possible downstream effects. After detection, there is still the question of what to do with it. Outliers could be discarded or substituted and both packages could give adjusted series for modelling. However, using the adjusted y must be cautioned as removing outliers might give incorrect prediction interval. On the other hand, not removing outlier will present skewed distribution and thereby, possibly wrong conclusion. In short, discretion is needed when it comes to the decision about what to do with outliers. Check out this [post](https://stats.stackexchange.com/questions/69874/how-to-correct-outliers-once-detected-for-time-series-data-forecasting) for more information. These are only two new packages in R for detection. There are more packages as well as detection methods available such as DBSCAN, k-means etc. Get in touch if you have ideas to share!
 
 
 <ins>Attribution</ins>
+[Back to top](#table-of-content)
+
 <div>R icon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 <div>Maginifying glass icon made by <a href="" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 <div>Clock icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
