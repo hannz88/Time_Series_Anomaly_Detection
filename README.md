@@ -35,10 +35,10 @@ Here's the plot of three series. At first glance, I thought chlorine and turbidi
 </p>
 
 ### Correlation Plot
-I was quite surprised to see that chlorine and turbidity had very weak correlation.
+I was quite surprised to see that chlorine and turbidity had very weak correlation. 
 
 <p align="center">
-    <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/correlation.png" alt="Correlation of the variables">
+    <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/correlation_plot.png" alt="Correlation of the variables">
 </p>
 
 ### Histogram 
@@ -48,7 +48,15 @@ As I decided to look at turbidity, I wanted to see the distribution of the turbi
     <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/histogram.png" alt="Histogram of turbidity">
 </p>
 
-## `anomalize`
+## `anomalize` package
+`anomalize` package fundamentally decompose a time series into seasonal, trend and remainder (residuals). The decomposition method it uses are: seasonal decomposition of time series by Loess (STL) and seasonal decomposition by piecewise medians (Twitter). Then, it detects the anomalies using either inter-quantile range (IQR) or eneralized extreme studentized deviation (GESD). 
+
+According to the author:
+"STL works very well in circumstances where a long term trend is present. The Loess algorithm typically does a very good job at detecting the trend. However, it circumstances when the seasonal component is more dominant than the trend, Twitter tends to perform better.
+
+The Twitter method works identically to STL for removing the seasonal component. The main difference is in removing the trend, which is performed by removing the median of the data rather than fitting a smoother. The median works well when a long-term trend is less dominant that the short-term seasonal component. This is because the smoother tends to overfit the anomalies."
+
+IQR method basically uses the Q1 and Q3 to calculate IQR. By default, the package sets the limit to be 3xIQR above and below the median. However, it may not be as accurate in detecting anomalies since the high leverage anomalies can skew the centerline (median) of the IQR. GESD progressively eliminates out-liers using a Student’s T-Test comparing the test statistic to a critical value. For information on [GESD](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h3.htm).
 
 
 
