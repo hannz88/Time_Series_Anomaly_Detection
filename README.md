@@ -104,39 +104,27 @@ Here, `tsoutliers` identified both additive outliers (AO) and innovation outlier
     <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/ts_with_tuning.png" alt="Output of tsoutliers with tuning">
 </p>
 
+## What's next?
+Deciding what to do with outliers has always been an issue in statistics. The difference here and matrix data is the temporal element. Outliers in matrices could be discarded (if that's the best option) while discarding an outlier in time series would create a temporal gap. Therefore, discretion should be used when it comes deciding what to do with it. The data was collected from different water distribution sites. According to [WHO](https://www.who.int/water_sanitation_health/publications/turbidity-information-200217.pdf), distribution comes after treatment and turbidity could indicate either of the following:
+
+- intrusion of soils and sewage through main breaks
+- External contamination from backflow or cross connections
+- Resuspension of accumulated silts and sediments, or detachment of corrosion chemicals and scales 
+- Detachment of biofilms 
+
+Therefore, in order to further explore the outliers, I'd check the sensors to ensure that there is no malfunction. The mentioned factors should also be checked to analyse the possible correlations which might give a hint as to the reason of the outliers. 
+
+Should one decide to use adjusted data for modelling, both `anomalize` and `tsoutliers` do return adjusted time series that could be use to fit a model. `anomalize` will substitute the outliers with the decompsoed seasonal and trend components of that particular point in time with `clean_anomalies`. `tsoutliers` return `yadj` which is the result of outliers included as regressors in a model, weighted by the estimated coefficients and removed from the original series. See [here](https://stats.stackexchange.com/questions/104882/detecting-outliers-in-time-series-ls-ao-tc-using-tsoutliers-package-in-r-how) for more information. Here is an example of 30 day-forecast using `yadj` from `tsoutliers` fitted with ARIMA(4,1,1). Note that this is not the best model as evident from the wide prediction interval and the forecast approximates the mean the longer it is.
+
+<p align="center">
+    <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/30_day_forecast_yadj_tsoutliers.png" alt="30 day-forecast using yadj from `tsoutliers`">
+</p>
+
+## Conclusion
+Fundamentally, `tsoutliers` works differently from `anomalize`. It applies model to the data, test for the different types of outliers and then refit and retest while the latter decompose and detect outliers. `tsoutliers` is useful in detecting the different types of outliers and visualising the possible downstream effects. After detection, there is still the question of what to do with it. Outliers could be discarded or substituted and both packages could give adjusted series for modelling. However, using the adjusted y must be cautioned as removing outliers might give incorrect prediction interval. On the other hand, not removing outlier will present skewed distribution and thereby, possibly wrong conclusion. In short, discretion is needed when it comes to the decision about what to do with outliers. Check out this [post](https://stats.stackexchange.com/questions/69874/how-to-correct-outliers-once-detected-for-time-series-data-forecasting) for more information. These are only two new packages in R for detection. There are more packages as well as detection methods available such as DBSCAN, k-means etc. Get in touch if you have ideas to share!
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<font size="-3"><div>R icon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div></font>
+<ins>Attribution</ins>
+<div>R icon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 <div>Maginifying glass icon made by <a href="" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 <div>Clock icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
