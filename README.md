@@ -6,7 +6,7 @@
 
 
 ## Introduction
-This is a time series analysis to detect anomalies/ outliers in New York Drinking Water Quality data available from [here](https://opendata.cityofnewyork.us/). The data consists of the turbidity values, coliform, fluoride and chlorine found at sites in distribution each month. However, there are missing values from certain months depending on the sites. There are 398 unque locations/ sites in the data. Each site presented data of different durations ranging from 43 days to 1673 days. For the purpose of time series analysis, I decided to analyse the data from the site with the longest amount of data. I've also abritarily decided to analyse turbidity of the water from. 
+This is a time series analysis to detect anomalies/ outliers in New York Drinking Water Quality data available from [here](https://opendata.cityofnewyork.us/). The data consists of the turbidity values, coliform, fluoride and chlorine found at sites in distribution each month. However, there are missing values from certain months depending on the sites. There are 398 unque locations/ sites in the data. Each site presented data of different durations ranging from 43 days to 1673 days. For the purpose of time series analysis, I decided to analyse the data from the site with the longest amount of data. Specifically,I decided to analyse turbidity of the water
 
 ## Table of content
 
