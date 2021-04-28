@@ -153,3 +153,4 @@ Fundamentally, `tsoutliers` works differently from `anomalize`. It applies model
 <div>R icon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 <div>Maginifying glass icon made by <a href="" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 <div>Clock icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+Turbidity image is from [Marshall Pumps](https://www.marshallpumps.co.uk/turbidity/)
