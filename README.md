@@ -18,6 +18,7 @@ This is a time series analysis to detect anomalies/ outliers in New York Drinkin
 - [Conclusion](#Conclusion)
 
 ## Background
+[Back to top](#table-of-content)
 ### What is turbidity?
 According to [USGS](https://www.usgs.gov/special-topic/water-science-school/science/turbidity-and-water?qt-science_center_objects=0#qt-science_center_objects), turbidity is the measure of relative clarity of a liquid. It is an optical characteristic of water and is a measurement of the amount of light that is scattered by material in the water when a light is shined through the water sample. Figure here shows the levels of turbidity:
 
@@ -25,12 +26,13 @@ According to [USGS](https://www.usgs.gov/special-topic/water-science-school/scie
     <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/turbidity.jpg" alt="Different turbidity levels from low to high">
 </p>
 
+[WHO](https://www.who.int/water_sanitation_health/publications/turbidity-information-200217.pdf) maintained that turbidity is an extremely useful indicator that can yield valuable information quickly, relatively cheaply and on an ongoing basis. While the turbidity is aimed to be as low as possible, the target turbidity depends on the stage of the water treatment. In distribution, if the turbidity is >= 4, it indicates possible faults or breaches in the distribution. There are many sources of turbidity; it might be harmless (eg clay, soil) or it could be an indication of the presence of dangeous chemical or biological compounds.
+
 ### Objective of project
 Here, I presented two different ways to detect outliers in time series in R. Specifically, I'm using `anomalize` and `tsoutliers`. Both R packages to detect outliers in time series. However, both have fundamentally very different basis for outliers and thus different ways to work to detect outliers. I'll go into a bit more details in the respective sections.
 
-[WHO](https://www.who.int/water_sanitation_health/publications/turbidity-information-200217.pdf) maintained that turbidity is an extremely useful indicator that can yield valuable information quickly, relatively cheaply and on an ongoing basis. While the turbidity is aimed to be as low as possible, the target turbidity depends on the stage of the water treatment. In distribution, if the turbidity is >= 4, it indicates possible faults or breaches in the distribution. There are many sources of turbidity; it might be harmless (eg clay, soil) or it could be an indication of the presence of dangeous chemical or biological compounds.
-
 ## Data Cleaning and Exploratory Analysis
+[Back to top](#table-of-content)
 <details>
     <summary>Data Cleaning (click to expand) </summary>
     
@@ -76,6 +78,7 @@ As I decided to look at turbidity, I wanted to see the distribution of the turbi
 </details>
 
 ## `anomalize` package
+[Back to top](#table-of-content)
 `anomalize` package fundamentally decompose a time series into seasonal, trend and remainder (residuals). The decomposition method it uses are: seasonal decomposition of time series by Loess (STL) and seasonal decomposition by piecewise medians (Twitter). Then, it detects the anomalies using either inter-quantile range (IQR) or eneralized extreme studentized deviation (GESD). 
 
 According to the author:
@@ -93,6 +96,7 @@ The graphs below shows the outputs when using different decomposition method & d
 From the results above, it can be seen that STL + GESD gives the highest number of anomalies while Twitter + IQR method gave the least. If cleaning of the anomalies is desired, the package also has a function to do that. The anomalize package also has the function to cleaned up outliers by replacing them with seasonal and trend components. 
 
 ## `tsoutliers` package
+[Back to top](#table-of-content)
 According to `tsoutliers`, the different types of outliers include:
 
 - Additive outliers: represents an isolated spike
@@ -124,6 +128,7 @@ Here, `tsoutliers` identified both additive outliers (AO) and innovation outlier
 </p>
 
 ## What's next?
+[Back to top](#table-of-content)
 Deciding what to do with outliers has always been an issue in statistics. The difference here and matrix data is the temporal element. Outliers in matrices could be discarded (if that's the best option) while discarding an outlier in time series would create a temporal gap. Therefore, discretion should be used when it comes deciding what to do with it. The data was collected from different water distribution sites. According to [WHO](https://www.who.int/water_sanitation_health/publications/turbidity-information-200217.pdf), distribution comes after treatment and turbidity could indicate either of the following:
 
 - intrusion of soils and sewage through main breaks
@@ -140,6 +145,7 @@ Should one decide to use adjusted data for modelling, both `anomalize` and `tsou
 </p>
 
 ## Conclusion
+[Back to top](#table-of-content)
 Fundamentally, `tsoutliers` works differently from `anomalize`. It applies model to the data, test for the different types of outliers and then refit and retest while the latter decompose and detect outliers. `tsoutliers` is useful in detecting the different types of outliers and visualising the possible downstream effects. After detection, there is still the question of what to do with it. Outliers could be discarded or substituted and both packages could give adjusted series for modelling. However, using the adjusted y must be cautioned as removing outliers might give incorrect prediction interval. On the other hand, not removing outlier will present skewed distribution and thereby, possibly wrong conclusion. In short, discretion is needed when it comes to the decision about what to do with outliers. Check out this [post](https://stats.stackexchange.com/questions/69874/how-to-correct-outliers-once-detected-for-time-series-data-forecasting) for more information. These are only two new packages in R for detection. There are more packages as well as detection methods available such as DBSCAN, k-means etc. Get in touch if you have ideas to share!
 
 
