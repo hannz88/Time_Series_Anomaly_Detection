@@ -19,7 +19,7 @@ According to [USGS](https://www.usgs.gov/special-topic/water-science-school/scie
 Here, I presented two different ways to detect outliers in time series in R. Specifically, I'm using `anomalize` and `tsoutliers`. Both R packages to detect outliers in time series. However, both have fundamentally very different basis for outliers and thus different ways to work to detect outliers. I'll go into a bit more details in the respective sections.
 
 <details>
-    <summary>Data Cleaning (click to expand) </summary>
+    <summary>Data Cleaning (**click to expand**) </summary>
     
 ### Missing values
 The data needed some cleaning at first. The class for the turbidity was character and so was the Date. After conversion, I decided to take three variables: turbidity, free chlorine and fluoride level at first. However, for the purpose of this project, we'll look only at turbidity. During data cleaning, I realise that some dates were missing and some values for fluoride is missing for some dates. The following chart displays the missing values:
