@@ -58,10 +58,12 @@ The Twitter method works identically to STL for removing the seasonal component.
 
 IQR method basically uses the Q1 and Q3 to calculate IQR. By default, the package sets the limit to be 3xIQR above and below the median. However, it may not be as accurate in detecting anomalies since the high leverage anomalies can skew the centerline (median) of the IQR. GESD progressively eliminates out-liers using a Student’s T-Test comparing the test statistic to a critical value. For information on [GESD](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h3.htm).
 
+The graphs below shows the outputs when using different decomposition method & different detection method:
 
+<img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/stl_gesd.png" width="400"/> <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/twitter_gesd.png" width="400"/>
+<img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/stl_iqr.png" width="400"/> <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/twitter_iqr.png" width="400"/>
 
-
-
+From the results above, it can be seen that STL + GESD gives the highest number of anomalies while Twitter + IQR method gave the least. If cleaning of the anomalies is desired, the package also has a function to do that. The anomalize package also has the function to cleaned up outliers by replacing them with seasonal and trend components. 
 
 
 
