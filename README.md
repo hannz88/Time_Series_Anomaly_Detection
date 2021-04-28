@@ -13,7 +13,7 @@ According to [USGS](Turbidity is the measure of relative clarity of a liquid. It
 Here, I presented two different ways to detect outliers in time series in R. Specifically, I'm using `anomalize` and `tsoutliers`. Both R packages to detect outliers in time series. However, both have fundamentally very different basis for outliers and thus different ways to work to detect outliers. I'll go into a bit more details in the respective sections.
 
 <details>
-    <summary> ## Data Cleaning </summary>
+    <summary>Data Cleaning</summary>
     
 ### Missing values
 The data needed some cleaning at first. The class for the turbidity was character and so was the Date. After conversion, I decided to take three variables: turbidity, free chlorine and fluoride level at first. However, for the purpose of this project, we'll look only at turbidity. During data cleaning, I realise that some dates were missing and some values for fluoride is missing for some dates. The following chart displays the missing values:
@@ -30,7 +30,9 @@ Using fluoride data, I imputed the missing values using different methods. The c
 
 </details>
 
-## Exploratory Analysis
+<details>
+    <summary>Exploratory Analysis</summary>
+    
 ### Time Series Plot
 Here's the plot of three series. At first glance, I thought chlorine and turbidity had some correlations.
 
@@ -51,6 +53,8 @@ As I decided to look at turbidity, I wanted to see the distribution of the turbi
 <p align="center">
     <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/histogram.png" alt="Histogram of turbidity">
 </p>
+
+</details>
 
 ## `anomalize` package
 `anomalize` package fundamentally decompose a time series into seasonal, trend and remainder (residuals). The decomposition method it uses are: seasonal decomposition of time series by Loess (STL) and seasonal decomposition by piecewise medians (Twitter). Then, it detects the anomalies using either inter-quantile range (IQR) or eneralized extreme studentized deviation (GESD). 
