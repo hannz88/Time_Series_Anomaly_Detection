@@ -13,7 +13,7 @@ According to [USGS](Turbidity is the measure of relative clarity of a liquid. It
 Here, I presented two different ways to detect outliers in time series in R. Specifically, I'm using `anomalize` and `tsoutliers`. Both R packages to detect outliers in time series. However, both have fundamentally very different basis for outliers and thus different ways to work to detect outliers. I'll go into a bit more details in the respective sections.
 
 <details>
-    <summary>Data Cleaning</summary>
+    <summary>Data Cleaning (click to expand) </summary>
     
 ### Missing values
 The data needed some cleaning at first. The class for the turbidity was character and so was the Date. After conversion, I decided to take three variables: turbidity, free chlorine and fluoride level at first. However, for the purpose of this project, we'll look only at turbidity. During data cleaning, I realise that some dates were missing and some values for fluoride is missing for some dates. The following chart displays the missing values:
@@ -31,7 +31,7 @@ Using fluoride data, I imputed the missing values using different methods. The c
 </details>
 
 <details>
-    <summary>Exploratory Analysis</summary>
+    <summary>Exploratory Analysis (click to expand) </summary>
     
 ### Time Series Plot
 Here's the plot of three series. At first glance, I thought chlorine and turbidity had some correlations.
@@ -72,6 +72,37 @@ The graphs below shows the outputs when using different decomposition method & d
 <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/stl_iqr.png" width="400"/> <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/twitter_iqr.png" width="400"/>
 
 From the results above, it can be seen that STL + GESD gives the highest number of anomalies while Twitter + IQR method gave the least. If cleaning of the anomalies is desired, the package also has a function to do that. The anomalize package also has the function to cleaned up outliers by replacing them with seasonal and trend components. 
+
+## `tsoutliers` package
+According to `tsoutliers`, the different types of outliers include:
+
+- Additive outliers: represents an isolated spike
+- Level shifts: abrupt change in mean and could be seasonal (aka Seasonal level shifts)
+- Transient change: a spike that takes a while to disappear
+- Innovation outliers: a shock in the innovation of the model
+
+The fundamental processes:
+
+- 1) Detection of outliers upon a chosen ARIMA model. Given  an  ARIMA  model  fitted  to  the  data,  outliers  are  detected  and located by checking the significance of all types of outliers at all possible time points.
+- 2) Choose and/or refit the ARIMA model including the outliers detected in the previous step and remove those outliers that are not significant in the new fit.
+
+The series is then adjusted for the detected outliers and the stages (1) and (2) are repeated until no more outliers are detected or until a maximum number of iterations is reached.
+
+There is one issue with `tsoutliers`. The model might need some tuning in order to find the best model. Otherwise, it will rush to fit and fit model using approximation when `tso` is run. The output below illustrates what I meant. 
+
+### `tso` with no tuning
+`tsoutliers` identified 4 additive outliers without parameter tuning. The blue line shows the adjusted time plot while the red line show the outliers and their effect.
+
+<p align="center">
+    <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/ts_no_tuning.png" alt="Output of tsoutliers without tuning">
+</p>
+
+### `tso` with tuning
+Here, `tsoutliers` identified both additive outliers (AO) and innovation outliers (IO). In the upper graph, the blue line represents the time plot adjusted for the effect outliers while the grey line shows the original time plot. In the lower graph, we could see that innovation outliers tend to have a longer impact on the rest of the series.
+
+<p align="center">
+    <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/ts_with_tuning.png" alt="Output of tsoutliers with tuning">
+</p>
 
 
 
