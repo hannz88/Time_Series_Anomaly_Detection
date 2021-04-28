@@ -5,6 +5,84 @@
 
 
 
+## Introduction
+This is a time series analysis to detect anomalies/ outliers in New York Drinking Water Quality data available from [here](https://opendata.cityofnewyork.us/). The data consists of the turbidity values, coliform, fluoride and chlorine found at sites in distribution each month. However, there are missing values from certain months depending on the sites. There are 398 unque locations/ sites in the data. Each site presented data of different durations ranging from 43 days to 1673 days. For the purpose of time series analysis, I decided to analyse the data from the site with the longest amount of data. I've also abritarily decided to analyse turbidity of the water from. 
+
+According to [USGS](Turbidity is the measure of relative clarity of a liquid. It is an optical characteristic of water and is a measurement of the amount of light that is scattered by material in the water when a light is shined through the water sample.), turbidity is the measure of relative clarity of a liquid. It is an optical characteristic of water and is a measurement of the amount of light that is scattered by material in the water when a light is shined through the water sample. [WHO](https://www.who.int/water_sanitation_health/publications/turbidity-information-200217.pdf) maintained that turbidity is an extremely useful indicator that can yield valuable information quickly, relatively cheaply and on an ongoing basis. While the turbidity is aimed to be as low as possible, the target turbidity depends on the stage of the water treatment. In distribution, if the turbidity is >= 4, it indicates possible faults or breaches in the distribution. There are many sources of turbidity; it might be harmless (eg clay, soil) or it could be an indication of the presence of dangeous chemical or biological compounds.
+
+Here, I presented two different ways to detect outliers in time series in R. Specifically, I'm using `anomalize` and `tsoutliers`. Both R packages to detect outliers in time series. However, both have fundamentally very different basis for outliers and thus different ways to work to detect outliers. I'll go into a bit more details in the respective sections.
+
+## Data Cleaning
+### Missing values
+The data needed some cleaning at first. The class for the turbidity was character and so was the Date. After conversion, I decided to take three variables: turbidity, free chlorine and fluoride level at first. However, for the purpose of this project, we'll look only at turbidity. During data cleaning, I realise that some dates were missing and some values for fluoride is missing for some dates. The following chart displays the missing values:
+
+<p align="center">
+    <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/Missing_by_date.png" alt="Missing values by date">
+</p>
+
+### Imputation of Missing Values
+Using fluoride data, I imputed the missing values using different methods. The charts below show some examples. From the graphs, I decided to uses seasonal decomposition to impute the multivariate data as it presents the most visually believable pattern.
+
+<img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/mean.png" width="400"/> <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/spline.png" width="400"/>
+<img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/seadec.png" width="400"/> <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/linear.png" width="400"/>
+
+## Exploratory Analysis
+### Time Series Plot
+Here's the plot of three series. At first glance, I thought chlorine and turbidity had some correlations.
+
+<p align="center">
+    <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/multi_time_plot.png" alt="Time series plot of the multivariate data">
+</p>
+
+### Correlation Plot
+I was quite surprised to see that chlorine and turbidity had very weak correlation.
+
+<p align="center">
+    <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/correlation.png" alt="Correlation of the variables">
+</p>
+
+### Histogram 
+As I decided to look at turbidity, I wanted to see the distribution of the turbidity. From the histogram below, it can be seen that a large majority of it is <1 NTU. However, there are still some >1 NTU and even an entry around 1.5 NTU, which would be an anomaly.
+
+<p align="center">
+    <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/histogram.png" alt="Histogram of turbidity">
+</p>
+
+## `anomalize`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -12,3 +90,4 @@
 
 <div>R icon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 <div>Maginifying glass icon made by <a href="" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+<div>Clock icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
