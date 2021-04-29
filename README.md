@@ -11,7 +11,8 @@ This is a time series analysis to detect anomalies/ outliers in New York Drinkin
 ## Table of content
 
 - [Background](#background)
-- [Data Cleaning and Exploratory Analysis](#Data-Cleaning-and-Exploratory-Analysis)
+- [Data Cleaning](#Data-Cleaning)
+- [Exploratory Analysis](#Exploratory-Analysis)
 - [`anomalize` package](#`anomalize`-package)
 - [`tsoutliers` package](#`tsoutliers`-package)
 - [What's next?](#What's-next?)
@@ -31,7 +32,7 @@ According to [USGS](https://www.usgs.gov/special-topic/water-science-school/scie
 ### Objective of project
 Here, I presented two different ways to detect outliers in time series in R. Specifically, I'm using `anomalize` and `tsoutliers`. Both R packages to detect outliers in time series. However, both have fundamentally very different basis for outliers and thus different ways to work to detect outliers. I'll go into a bit more details in the respective sections.
 
-## Data Cleaning and Exploratory Analysis
+## Data Cleaning
 [Back to top](#table-of-content)
 <details>
     <summary>Data Cleaning (click to expand) </summary>
@@ -52,8 +53,8 @@ Using fluoride data, I imputed the missing values using different methods. The c
 </details>
 
 
-<summary>Exploratory Analysis</summary>
-    
+## Exploratory Analysis
+[Back to top](#table-of-content)
 ### Time Series Plot
 Here's the plot of three series. At first glance, I thought chlorine and turbidity had some correlations.
 
