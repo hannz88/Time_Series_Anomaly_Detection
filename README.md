@@ -52,7 +52,7 @@ Using fluoride data, I imputed the missing values using different methods. The c
 </details>
 
 <details>
-    <summary>Exploratory Analysis (click to expand) </summary>
+Exploratory Analysis
     
 ### Time Series Plot
 Here's the plot of three series. At first glance, I thought chlorine and turbidity had some correlations.
