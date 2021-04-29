@@ -51,8 +51,8 @@ Using fluoride data, I imputed the missing values using different methods. The c
 
 </details>
 
-<details>
-Exploratory Analysis
+
+<summary>Exploratory Analysis</summary>
     
 ### Time Series Plot
 Here's the plot of three series. At first glance, I thought chlorine and turbidity had some correlations.
@@ -75,7 +75,7 @@ As I decided to look at turbidity, I wanted to see the distribution of the turbi
     <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/histogram.png" alt="Histogram of turbidity">
 </p>
 
-</details>
+
 
 ## `anomalize` package
 [Back to top](#table-of-content)
