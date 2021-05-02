@@ -13,8 +13,8 @@ This is a time series analysis to detect anomalies/ outliers in New York Drinkin
 - [Background](#background)
 - [Data Cleaning](#Data-Cleaning)
 - [Exploratory Analysis](#Exploratory-Analysis)
-- [`anomalize` package](#`anomalize`-package)
-- [`tsoutliers` package](#`tsoutliers`-package)
+- [`anomalize` package](#anomalize-package)
+- [`tsoutliers` package](#tsoutliers-package)
 - [What's next?](#What's-next?)
 - [Conclusion](#Conclusion)
 
