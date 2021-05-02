@@ -100,7 +100,14 @@ From the results above, it can be seen that STL + GESD gives the highest number 
 ## `tsoutliers` package
 [Back to top](#table-of-content)
 
-According to `tsoutliers`, the different types of outliers include:
+Outlier detection is related to intervention analysis. Intervention analysis, put simply, is analysing if there's been an intervention to the time series and how much the intervention has affected the time series. The following image comes to mind: 
+
+<p align="center">
+    <img src="https://github.com/hannz88/Time_Series_Anomaly_Detection/blob/main/Images/giphy.gif" alt="Gif of intervention">
+</p>
+
+
+Following [Chen & Liu (1993)](https://www.jstor.org/stable/2290724?origin=crossref&seq=1#metadata_info_tab_contents) procedure, `tsoutliers` aim to detect different types of outliers/ intervention including:
 
 - Additive outliers: represents an isolated spike
 - Level shifts: abrupt change in mean and could be seasonal (aka Seasonal level shifts)
